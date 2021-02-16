@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 
@@ -57,10 +59,32 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
+  <script>
+    const rewindAudioToStart = audioElement => audioElement.currentTime = 0
+    const checkExistsElement = element => !!element
 
-</script>
+    function removeTransition(e) {
+      if(e.propertyName !== 'transform') return
+      this.classList.remove('playing')
+    }
+
+    function addPLaySound(e) {
+      const keyCodePressed = e.keyCode
+      const audioElement = document.querySelector(`audio[data-key="${keyCodePressed}"]`)
+      const keyElement = document.querySelector(`.key[data-key="${keyCodePressed}"]`)
+      if (!checkExistsElement(audioElement)) return
+      rewindAudioToStart(audioElement)
+      audioElement.play()
+      keyElement.classList.add('playing')
+    }
+
+    document.querySelectorAll('.key')
+      .forEach(key => key.addEventListener('transitionend', removeTransition))
+    window.addEventListener('keydown', addPLaySound)
+
+  </script>
 
 
 </body>
+
 </html>
