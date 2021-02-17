@@ -31,10 +31,11 @@ body {
 }
 
 .clock-face {
+  background: #018DED29;
+  border-radius: 50%;
   position: relative;
   width: 100%;
   height: 100%;
-  transform: translateY(-3px); /* account for the height of the clock hands */
 }
 
 .hand {
@@ -48,4 +49,21 @@ body {
   transition-property: all;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.36, 2.75, 0.58, 1);
+}
+
+.hour-hand {
+  height: 3px;
+  background: lightslategray;
+}
+
+.second-hand {
+  height: 1px;
+  background: lightcoral;
+
+}
+
+
+.min-hand {
+  height: 2px;
+  background: lightgreen;
 }
